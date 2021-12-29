@@ -22,6 +22,7 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
+            throw new Exception($"Error while trying to call GetEmployees method.");
             var response = await _employeeService.GetAllEmployees().ConfigureAwait(false);
             if(response == null)
             {

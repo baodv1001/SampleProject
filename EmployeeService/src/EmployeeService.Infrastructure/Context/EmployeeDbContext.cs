@@ -23,8 +23,8 @@ namespace EmployeeService.Infrastructure.Context
                 new Employee() { Id = 2, Name = "Tu", Address = "Ha Tinh", Picture = "none", Level = "Intern" , EmployeeId = Guid.NewGuid(), CreatedAt = new DateTime(2021, 1, 1), UpdatedAt = new DateTime(2021, 1, 1) }
 
             };
-            /*Employees.AddRange(employees);
-            SaveChanges();*/
+            Employees.AddRange(employees);
+            /*SaveChanges();*/
         }
     }
 }

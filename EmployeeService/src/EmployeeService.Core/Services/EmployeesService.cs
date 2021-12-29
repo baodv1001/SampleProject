@@ -29,7 +29,16 @@ namespace EmployeeService.Core.Services
 
         public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
-            return await _employeeRepository.GetAllEmployees();
+            try
+            {
+                throw new ArgumentNullException();
+                return await _employeeRepository.GetAllEmployees();
+
+            }
+            catch (System.Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<Employee> GetEmployeeById(int id)
