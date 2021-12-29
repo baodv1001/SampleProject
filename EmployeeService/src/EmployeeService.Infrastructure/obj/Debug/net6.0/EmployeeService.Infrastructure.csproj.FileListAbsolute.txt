@@ -1,0 +1,11 @@
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\EmployeeService.Infrastructure.deps.json
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\EmployeeService.Infrastructure.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\ref\EmployeeService.Infrastructure.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\EmployeeService.Infrastructure.pdb
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.AssemblyInfoInputs.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.AssemblyInfo.cs
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.csproj.CoreCompileInputs.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\ref\EmployeeService.Infrastructure.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.pdb

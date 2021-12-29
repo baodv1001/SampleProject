@@ -1,0 +1,12 @@
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\bin\Debug\net6.0\EmployeeService.Core.deps.json
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\bin\Debug\net6.0\EmployeeService.Core.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\bin\Debug\net6.0\ref\EmployeeService.Core.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\bin\Debug\net6.0\EmployeeService.Core.pdb
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.AssemblyInfoInputs.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.AssemblyInfo.cs
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.csproj.CoreCompileInputs.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\ref\EmployeeService.Core.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.pdb
+D:\SampleProject\EmployeeService\src\EmployeeService.Core\obj\Debug\net6.0\EmployeeService.Core.csproj.AssemblyReference.cache
