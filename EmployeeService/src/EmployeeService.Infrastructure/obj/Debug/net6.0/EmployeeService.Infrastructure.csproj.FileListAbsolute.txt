@@ -9,3 +9,7 @@ D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\ne
 D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.dll
 D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\ref\EmployeeService.Infrastructure.dll
 D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.pdb
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\EmployeeService.Core.dll
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\bin\Debug\net6.0\EmployeeService.Core.pdb
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.csproj.AssemblyReference.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Infrastructure\obj\Debug\net6.0\EmployeeService.Infrastructure.csproj.CopyComplete
