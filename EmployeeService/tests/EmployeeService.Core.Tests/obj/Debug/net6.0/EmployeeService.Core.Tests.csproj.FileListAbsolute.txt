@@ -87,7 +87,6 @@ D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\bin\Debug\net6
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\obj\Debug\net6.0\EmployeeService.Core.Tests.csproj.AssemblyReference.cache
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\obj\Debug\net6.0\EmployeeService.Core.Tests.GeneratedMSBuildEditorConfig.editorconfig
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\obj\Debug\net6.0\EmployeeService.Core.Tests.AssemblyInfoInputs.cache
 D:\SampleProject\EmployeeService\tests\EmployeeService.Core.Tests\obj\Debug\net6.0\EmployeeService.Core.Tests.AssemblyInfo.cs
