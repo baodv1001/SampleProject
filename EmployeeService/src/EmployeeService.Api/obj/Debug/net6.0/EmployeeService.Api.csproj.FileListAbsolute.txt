@@ -90,3 +90,4 @@ D:\SampleProject\EmployeeService\src\EmployeeService.Api\bin\Debug\net6.0\Employ
 D:\SampleProject\EmployeeService\src\EmployeeService.Api\bin\Debug\net6.0\EmployeeService.Core.pdb
 D:\SampleProject\EmployeeService\src\EmployeeService.Api\bin\Debug\net6.0\EmployeeService.Infrastructure.pdb
 D:\SampleProject\EmployeeService\src\EmployeeService.Api\obj\Debug\net6.0\EmployeeService.Api.csproj.AssemblyReference.cache
+D:\SampleProject\EmployeeService\src\EmployeeService.Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

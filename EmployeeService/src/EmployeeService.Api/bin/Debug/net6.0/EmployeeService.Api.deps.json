@@ -10,6 +10,7 @@
         "dependencies": {
           "EmployeeService.Core": "1.0.0",
           "EmployeeService.Infrastructure": "1.0.0",
+          "Microsoft.EntityFrameworkCore.InMemory": "6.0.1",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
           "Newtonsoft.Json": "13.0.1",
           "Swashbuckle.AspNetCore": "6.2.3"
@@ -128,6 +129,17 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/6.0.1": {},
+      "Microsoft.EntityFrameworkCore.InMemory/6.0.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "assemblyVersion": "6.0.1.0",
+            "fileVersion": "6.0.121.56712"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/6.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.1",
@@ -565,6 +577,13 @@
       "sha512": "sha512-fp8VTLv1up7EGAa9Daf+IErpq63hiKtWeApoxgnkMjURdjkbVcwaA4AozwHjEqVVQugGqwroHes4HVp24cDDAw==",
       "path": "microsoft.entityframeworkcore.analyzers/6.0.1",
       "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.1.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ORvH+p+Qu8Lr08gRidXy3BxGXVFEccKi+JTkEtLuKvDJbQ4KICW1YMjI47A/vWnJIB915zz2zDN8YeJfiEkVxg==",
+      "path": "microsoft.entityframeworkcore.inmemory/6.0.1",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.6.0.1.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/6.0.1": {
       "type": "package",
