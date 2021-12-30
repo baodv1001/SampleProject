@@ -1,6 +1,7 @@
 ﻿using EmployeeService.Core.Interfaces.Repositories;
 using EmployeeService.Core.Interfaces.Services;
 using EmployeeService.Core.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,43 +13,78 @@ namespace EmployeeService.Core.Services
     public class EmployeesService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeesService> _logger;
 
-        public EmployeesService(IEmployeeRepository employeeRepository)
+        public EmployeesService(IEmployeeRepository employeeRepository, ILogger<EmployeesService> logger)
         {
             _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task<bool> CreateEmployee(Employee employee)
+        public async Task<Employee> CreateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _employeeRepository.CreateEmployee(employee);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"Error while trying to call Create Employee in service class, Error Message = {ex}.");
+                throw;
+            }
         }
-
-        public async Task DeleteEmployee(int id)
+        public async Task<string> UpdateEmployee(Employee employee, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _employeeRepository.UpdateEmployee(employee,id);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"Error while trying to call Update Employee in service class, Error Message = {ex}.");
+                throw;
+            }
+        }
+        public async Task<bool> DeleteEmployee(int id)
+        {
+            try
+            {
+                return await _employeeRepository.DeleteEmployee(id);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"Error while trying to call Delete Employee in service class, Error Message = {ex}.");
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
             try
             {
-                throw new ArgumentNullException();
+                /*throw new ArgumentNullException();*/
                 return await _employeeRepository.GetAllEmployees();
 
             }
             catch (System.Exception ex)
             {
+                _logger.LogError($"Error while trying to call Get All Employees in service class, Error Message = {ex}.");
                 throw;
             }
         }
 
         public async Task<Employee> GetEmployeeById(int id)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                /*return await _employeeRepository.GetAllEmployees();*/
+                return await _employeeRepository.GetEmployeeById(id);
 
-        public async Task<bool> UpdateEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"Error while trying to call Get Employee By Id in service class, Error Message = {ex}.");
+                throw;
+            }
         }
     }
 }

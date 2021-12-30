@@ -11,8 +11,8 @@ namespace EmployeeService.Core.Interfaces.Repositories
     {
         Task<IEnumerable<Employee>> GetAllEmployees();
         Task<Employee> GetEmployeeById(int id);
-        Task<bool> CreateEmployee(Employee employee);
-        Task<bool> UpdateEmployee(Employee employee);
+        Task<Employee> CreateEmployee(Employee employee);
+        Task<string> UpdateEmployee(Employee employee, int id);
         Task<bool> DeleteEmployee(int id);
     }
 }

@@ -13,15 +13,15 @@ namespace EmployeeService.Infrastructure.Entities
         [Required]
         public int Id { get; set; }
         [Required]
-        public Guid EmployeeId { get; set; }
-        [Required]
         public string Name { get; set; }
         [Required]
         public string Address { get; set; }
         [Required]
-        public string Picture { get; set; }
+        public string ImageUrl { get; set; }
         [Required]
         public string Level { get; set; }
+        [Required]
+        public DateTime Dob { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]

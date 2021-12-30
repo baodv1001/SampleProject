@@ -21,11 +21,29 @@ namespace EmployeeService.Api
                 throw new ArgumentNullException (nameof (configuration));
             }
 
-            services.AddDbContext<EmployeeDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
+            /*services.AddDbContext<EmployeeDbContext>(opt => opt.UseInMemoryDatabase("InMem"));*/
+
+            var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+
+            string dbConnectionString = string.Empty;
+            if(!(bool)(appSettings?.ByPassKeyVault))
+            {
+                // Use for localhost
+                dbConnectionString = configuration.GetConnectionString("Employee");
+            }   
+            else
+            {
+                
+            }
+            //
+            services.AddDbContext<EmployeeDbContext>(
+                optionsAction: options => options.UseSqlServer(dbConnectionString),
+                contextLifetime: ServiceLifetime.Transient,
+                optionsLifetime: ServiceLifetime.Transient);
 
             services.AddScoped<IEmployeeService, EmployeesService>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-
+            services.AddHttpClient();
             return services;
         }
     }
