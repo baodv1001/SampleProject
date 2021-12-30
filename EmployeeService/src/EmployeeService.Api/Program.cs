@@ -1,4 +1,6 @@
+using AutoMapper;
 using EmployeeService.Api;
+using EmployeeService.Api.Helper;
 using EmployeeService.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
 
 //Configure Auto Mapper
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 

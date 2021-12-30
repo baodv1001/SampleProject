@@ -12,19 +12,19 @@ namespace EmployeeService.Infrastructure.Context
     {
         public EmployeeDbContext(DbContextOptions<EmployeeDbContext> option) : base(option)
         {
-            SeedData();
+            /*SeedData();*/
         }
         public virtual DbSet<Employee> Employees { get; set; } 
-        private void SeedData()
+        /*private void SeedData()
         {
             var employees = new List<Employee>()
             {
-                new Employee() { Id = 1, Name = "Bao", Address = "Dak Lak", Picture = "none", Level = "Intern", EmployeeId = Guid.NewGuid(), CreatedAt = new DateTime(2021,1,1), UpdatedAt = new DateTime(2021, 1, 1) },
-                new Employee() { Id = 2, Name = "Tu", Address = "Ha Tinh", Picture = "none", Level = "Intern" , EmployeeId = Guid.NewGuid(), CreatedAt = new DateTime(2021, 1, 1), UpdatedAt = new DateTime(2021, 1, 1) }
+                new Employee() { Id = 1, Name = "Bao", Address = "Dak Lak", Picture = "none", Level = "Intern",  CreatedAt = new DateTime(2021,1,1), UpdatedAt = new DateTime(2021, 1, 1) },
+                new Employee() { Id = 2, Name = "Tu", Address = "Ha Tinh", Picture = "none", Level = "Intern" ,  CreatedAt = new DateTime(2021, 1, 1), UpdatedAt = new DateTime(2021, 1, 1) }
 
             };
             Employees.AddRange(employees);
-            /*SaveChanges();*/
-        }
+            *//*SaveChanges();*//*
+        }*/
     }
 }
