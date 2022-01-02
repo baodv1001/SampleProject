@@ -24,6 +24,10 @@ namespace EmployeeService.Core.Services
         {
             try
             {
+                if(employee == null)
+                {
+                    throw new ArgumentNullException(nameof(employee));
+                }
                 return await _employeeRepository.CreateEmployee(employee);
             }
             catch (System.Exception ex)
@@ -36,6 +40,14 @@ namespace EmployeeService.Core.Services
         {
             try
             {
+                if (id <= 0)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
+                if (employee == null)
+                {
+                    throw new ArgumentNullException(nameof(employee));
+                }
                 return await _employeeRepository.UpdateEmployee(employee,id);
             }
             catch (System.Exception ex)
@@ -48,6 +60,10 @@ namespace EmployeeService.Core.Services
         {
             try
             {
+                if (id <= 0)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }
                 return await _employeeRepository.DeleteEmployee(id);
             }
             catch (System.Exception ex)
@@ -76,7 +92,10 @@ namespace EmployeeService.Core.Services
         {
             try
             {
-                /*return await _employeeRepository.GetAllEmployees();*/
+                if(id<=0)
+                {
+                    throw new ArgumentNullException(nameof(id));
+                }    
                 return await _employeeRepository.GetEmployeeById(id);
 
             }

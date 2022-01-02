@@ -21,7 +21,6 @@ namespace EmployeeService.Api
                 throw new ArgumentNullException (nameof (configuration));
             }
 
-            /*services.AddDbContext<EmployeeDbContext>(opt => opt.UseInMemoryDatabase("InMem"));*/
 
             var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 

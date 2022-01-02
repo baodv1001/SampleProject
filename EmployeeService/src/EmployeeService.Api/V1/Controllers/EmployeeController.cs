@@ -26,7 +26,7 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
-            /*throw new Exception($"Error while trying to call GetEmployees method.");*/
+            throw new Exception($"Error while trying to call GetEmployees method.");
             var response = await _employeeService.GetAllEmployees().ConfigureAwait(false);
             return response == null ? NoContent() : Ok(response);
         }
@@ -44,7 +44,7 @@ namespace EmployeeService.Api.V1.Controllers
         {
             if(id <= 0)
             {
-                return NotFound();
+                return BadRequest();
             }    
             var response = await _employeeService.GetEmployeeById(id).ConfigureAwait(false);
             return response == null ? NoContent() : Ok(response);
@@ -109,8 +109,9 @@ namespace EmployeeService.Api.V1.Controllers
             {
                 return BadRequest();
             }
+            var response = await _employeeService.UpdateEmployee(employee, id).ConfigureAwait(false);
 
-            return await _employeeService.UpdateEmployee(employee, id).ConfigureAwait(false);
+            return response == null ? NoContent() : Ok(response);
         }
     }
 }
