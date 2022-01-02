@@ -36,13 +36,12 @@ namespace EmployeeService.Infrastructure.Repositories
             {
                 return "Not found!";
             }
-            if(employee != null)
-            {
                 if (dbEmployee.UpdatedAt != employee.UpdatedAt)
                 {
                     return "Employee has been updated, please refresh the page!";
                 }
                 dbEmployee.Name = employee.Name;
+                dbEmployee.Address = employee.Address;
                 dbEmployee.Level = employee.Level;
                 dbEmployee.Dob = employee.Dob;
                 dbEmployee.ImageUrl = employee.ImageUrl;
@@ -53,8 +52,6 @@ namespace EmployeeService.Infrastructure.Repositories
                 //Commit
                 await _dbContext.SaveChangesAsync();
                 return "Update success!";
-            }
-            return "Bad request!";
         }
 
         public async Task<bool> DeleteEmployee(int id)

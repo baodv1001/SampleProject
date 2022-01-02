@@ -2,8 +2,18 @@ using AutoMapper;
 using EmployeeService.Api;
 using EmployeeService.Api.Helper;
 using EmployeeService.Api.Middlewares;
+using NLog;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+    builder.Host
+    .ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+    })
+    .UseNLog();
 
 // Add services to the container.
 
@@ -35,6 +45,8 @@ if (currentEnvironment?.Equals("Development", StringComparison.OrdinalIgnoreCase
 }
 
 IConfigurationRoot config = configBuilder.Build();
+LogManager.Configuration = new NLogLoggingConfiguration(config.GetSection("NLog"));
+Logger logger = LogManager.GetCurrentClassLogger();
 
 var app = builder.Build();
 
@@ -46,8 +58,8 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-    /*app.UseHttpCodeAndLogMiddleware();*/
-}    
+    app.UseHttpCodeAndLogMiddleware();
+}
 
 app.ConfigureSwagger();
 
@@ -57,4 +69,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    logger.Info($"{ApiConstants.FriendlyServiceName} starts running ...");
+    app.Run();
+    logger.Info($"{ApiConstants.FriendlyServiceName} is stopped ...");
+}
+catch (Exception ex)
+{
+    logger.Error(ex);
+    throw;
+}
+finally
+{
+    LogManager.Shutdown();
+}

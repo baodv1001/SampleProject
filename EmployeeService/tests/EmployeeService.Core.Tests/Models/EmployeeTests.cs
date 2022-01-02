@@ -1,8 +1,8 @@
 using Xunit;
 
-namespace EmployeeService.Infrastructure.Tests
+namespace EmployeeService.Core.Tests
 {
-    public class UnitTest1
+    public class EmployeeTests
     {
         [Fact]
         public void Test1()
