@@ -36,22 +36,25 @@ namespace EmployeeService.Infrastructure.Repositories
             {
                 return "Not found!";
             }
-                if (dbEmployee.UpdatedAt != employee.UpdatedAt)
-                {
-                    return "Employee has been updated, please refresh the page!";
-                }
-                dbEmployee.Name = employee.Name;
-                dbEmployee.Address = employee.Address;
-                dbEmployee.Level = employee.Level;
-                dbEmployee.Dob = employee.Dob;
-                dbEmployee.ImageUrl = employee.ImageUrl;
-                dbEmployee.UpdatedAt = DateTime.Now;
+            if (dbEmployee.UpdatedAt != employee.UpdatedAt)
+            {
+                return "Employee has been updated, please refresh the page!";
+            }
+            dbEmployee.Name = employee.Name;
+            dbEmployee.Address = employee.Address;
+            dbEmployee.Level = employee.Level;
+            dbEmployee.Phonenumber = employee.Phonenumber;
+            dbEmployee.Gender = employee.Gender;
+            dbEmployee.Email = employee.Email;
+            dbEmployee.Dob = employee.Dob;
+            dbEmployee.ImageUrl = employee.ImageUrl;
+            dbEmployee.UpdatedAt = DateTime.Now;
 
-                // Update employee
-                _dbContext.Employees.Update(dbEmployee);
-                //Commit
-                await _dbContext.SaveChangesAsync();
-                return "Update success!";
+            // Update employee
+            _dbContext.Employees.Update(dbEmployee);
+            //Commit
+            await _dbContext.SaveChangesAsync();
+            return "Update success!";
         }
 
         public async Task<bool> DeleteEmployee(int id)

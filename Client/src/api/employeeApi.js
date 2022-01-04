@@ -19,7 +19,8 @@ const employeeApi = {
   },
 
   update: async employee => {
-    const res = await axiosClient.put(`${url}${employee.idEmployee}`, employee);
+    console.log(employee);
+    const res = await axiosClient.put(`${url}${employee.id}`, employee);
     return res.data;
   },
 

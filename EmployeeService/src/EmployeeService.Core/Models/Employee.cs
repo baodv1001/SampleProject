@@ -9,10 +9,12 @@ namespace EmployeeService.Core.Models
 {
     public class Employee
     {
-        [JsonIgnore]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phonenumber { get; set; }
+        public string Gender { get; set; }
         public string ImageUrl { get; set; }
         public string Level { get; set; }
         public DateTime Dob { get; set; }

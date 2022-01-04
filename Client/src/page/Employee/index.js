@@ -1,14 +1,11 @@
-import { EyeOutlined, EditOutlined, HeartOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Table, Card, Row, Col, Input, Modal, Tooltip, Button } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Input, Modal, Row, Table, Tooltip } from 'antd';
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
-import userApi from '../../api/userApi';
-import { getUser } from '../../redux/actions/auth';
+import { useNavigate } from 'react-router-dom';
 import { getEmployees } from '../../redux/actions/employees';
-import { authState$, employeeState$ } from '../../redux/selectors';
+import { employeeState$ } from '../../redux/selectors';
 
 const { Search } = Input;
 const { confirm } = Modal;
@@ -37,16 +34,19 @@ const Employee = props => {
     {
       title: 'DOB',
       dataIndex: 'dob',
-      width: "20%"
+      width: '20%',
     },
     {
       title: '',
-      dataIndex: 'action',
+      dataIndex: 'idEmployee',
       width: '10%',
       render: idEmployee => (
         <div className={role === 'admin' && 'flex'}>
           <Tooltip title="View details">
-            <Button  icon={<EditOutlined />} onClick={() => navigate(`/employee/${idEmployee}`)} />
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => navigate(`/employee/edit/${idEmployee}`)}
+            />
           </Tooltip>
           {role === 'admin' && (
             <Tooltip title="Delete">
@@ -55,7 +55,7 @@ const Employee = props => {
           )}
         </div>
       ),
-    }
+    },
   ];
   const [role, setRole] = useState();
 
@@ -68,8 +68,7 @@ const Employee = props => {
   }, []);
   useEffect(() => {
     console.log(data);
-    if(data.length>0)
-    {
+    if (data.length > 0) {
       mappingDatasource(data);
     }
   }, [data]);
@@ -82,14 +81,14 @@ const Employee = props => {
   const mappingDatasource = dataInput => {
     const res = [];
     dataInput.map(employee => {
-      // const { Role } = employee.Role;
-      var no=0;
+      console.log(employee);
+      var no = 0;
       res.push({
         no: ++no,
-        idEmployee: employee.idEmployee,
+        idEmployee: employee.id,
         name: employee.name,
         level: employee.level,
-        dob: moment(employee.dob).format("DD/MM/YYYY"),
+        dob: moment(employee.dob).format('DD/MM/YYYY'),
         address: employee.address,
         // role: Role.name,
       });
