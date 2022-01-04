@@ -1,5 +1,6 @@
 import { HomeOutlined, UserOutlined} from '@ant-design/icons';
 import Employee from 'page/Employee';
+import EditEmployee from 'page/Employee/EditEmployee';
 import Home from '../page/Home';
 import NotFound from '../page/NotFound';
 const routes = [
@@ -12,6 +13,16 @@ const routes = [
     path: '/employee',
     exact: true,
     page: <Employee />,
+  },
+  {
+    path: '/employee/edit/:id',
+    exact: true,
+    page: <EditEmployee />,
+  },
+  {
+    path: '/employee/add',
+    exact: true,
+    page: <EditEmployee />,
   },
   {
     path: '*',

@@ -17,14 +17,18 @@ namespace EmployeeService.Infrastructure.Entities
         [Required]
         public string Address { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Phonenumber { get; set; }
+        [Required]
+        public string Gender { get; set; }
+        [Required]
         public string ImageUrl { get; set; }
         [Required]
         public string Level { get; set; }
         [Required]
         public DateTime Dob { get; set; }
-        [Required]
         public DateTime CreatedAt { get; set; }
-        [Required]
         public DateTime UpdatedAt { get; set; }
     }
 }

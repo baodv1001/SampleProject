@@ -55,7 +55,7 @@ export default function employeesReducer(state = INIT_STATE.employees, action) {
       return {
         ...state,
         data: state.data.map(employee =>
-          employee.idEmployee === action.payload.idEmployee ? action.payload : employee
+          employee.id === action.payload.id ? action.payload : employee
         ),
         isLoading: false,
         isSuccess: true,
