@@ -65,6 +65,10 @@ app.ConfigureSwagger();
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+app.UseCors("CorsPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();
