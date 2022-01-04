@@ -42,6 +42,8 @@ namespace EmployeeService.Api
 
             services.AddScoped<IEmployeeService, EmployeesService>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddHttpClient();
             return services;
         }
