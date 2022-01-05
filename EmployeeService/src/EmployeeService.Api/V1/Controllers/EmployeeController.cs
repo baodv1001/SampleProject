@@ -98,7 +98,7 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<string>> UpdateEmployee(Employee employee, int id)
+        public async Task<ActionResult<Object>> UpdateEmployee(Employee employee, int id)
         {
             if(!ModelState.IsValid)
             {

@@ -28,17 +28,17 @@ namespace EmployeeService.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
             return employee;
         }
-        public async Task<string> UpdateEmployee(Employee employee, int id)
+        public async Task<Object> UpdateEmployee(Employee employee, int id)
         {
             var dbEmployee = await _dbContext.Employees.FindAsync(id);
 
             if (dbEmployee == null || dbEmployee.Id != id)
             {
-                return "Not found!";
+                return new { message = "Not found!" };
             }
             if (dbEmployee.UpdatedAt != employee.UpdatedAt)
             {
-                return "Employee has been updated, please refresh the page!";
+                return new {message = "Employee has been updated, please refresh the page!" };
             }
             dbEmployee.Name = employee.Name;
             dbEmployee.Address = employee.Address;
@@ -54,7 +54,7 @@ namespace EmployeeService.Infrastructure.Repositories
             _dbContext.Employees.Update(dbEmployee);
             //Commit
             await _dbContext.SaveChangesAsync();
-            return "Update success!";
+            return new {message= "Update success!" , employee = dbEmployee};
         }
 
         public async Task<bool> DeleteEmployee(int id)

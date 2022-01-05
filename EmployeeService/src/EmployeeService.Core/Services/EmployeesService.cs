@@ -36,7 +36,7 @@ namespace EmployeeService.Core.Services
                 throw;
             }
         }
-        public async Task<string> UpdateEmployee(Employee employee, int id)
+        public async Task<Object> UpdateEmployee(Employee employee, int id)
         {
             try
             {

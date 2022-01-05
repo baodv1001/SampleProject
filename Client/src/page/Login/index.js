@@ -39,9 +39,10 @@ const Login = props => {
       if (auth.data) {
         if (auth.data.jwt) {
           localStorage.setItem('accessToken', auth.data.jwt);
-          localStorage.setItem('idUser', auth.data.user.IdUser);
-          navigate('/');
-          window.location.reload();
+          localStorage.setItem('idUser', auth.data.user.idUser);
+          localStorage.setItem('role', auth.data.user.role.name);
+          navigate('/', {replace:true});
+          // window.location.reload();
         } else {
           setLoading(false);
           handleFailed(auth.data.message);
@@ -57,7 +58,7 @@ const Login = props => {
             <Card>
               <div style={{ margin: '1.5rem 0' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <h3>Welcom Simple vote app!</h3>
+                  <h3>Welcom Sample app!</h3>
                 </div>
                 <Row justify="center">
                   <Col xs={24} sm={24} md={20} lg={20}>

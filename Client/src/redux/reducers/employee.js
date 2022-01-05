@@ -52,14 +52,30 @@ export default function employeesReducer(state = INIT_STATE.employees, action) {
         isSuccess: false,
       };
     case getType(employeeActions.updateEmployee.updateEmployeeSuccess):
-      return {
-        ...state,
-        data: state.data.map(employee =>
-          employee.id === action.payload.id ? action.payload : employee
-        ),
-        isLoading: false,
-        isSuccess: true,
-      };
+      {
+        if(action.payload.data.employee)
+        {
+          return {
+            ...state,
+            data: state.data.map(employee =>
+              employee.id === action.payload.data.employee.id ? action.payload.data.employee : employee
+            ),
+            isLoading: false,
+            isSuccess: true,
+            message: action.payload.data.message
+          };
+        }
+        else
+        {
+          return {
+            ...state,
+            isLoading: false,
+            isSuccess: false,
+            message: action.payload.data.message
+          };
+        }
+        
+      }
     case getType(employeeActions.updateEmployee.updateEmployeeFailure):
       return {
         ...state,
@@ -76,7 +92,7 @@ export default function employeesReducer(state = INIT_STATE.employees, action) {
     case getType(employeeActions.deleteEmployee.deleteEmployeeSuccess):
       return {
         ...state,
-        data: state.data.filter(employee => employee.idEmployee !== action.payload),
+        data: state.data.filter(employee => employee.id !== action.payload),
         isLoading: false,
         isSuccess: true,
       };

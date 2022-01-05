@@ -229,7 +229,7 @@ namespace EmployeeService.Core.Tests
             _repositoryMock.Setup(x => x.UpdateEmployee(employeeMock, id)).ReturnsAsync("Not found!");
 
             // Act
-            Func<string> result = () => _sut.UpdateEmployee(employeeMock, id).Result;
+            Func<Object> result = () => _sut.UpdateEmployee(employeeMock, id).Result;
 
             // Assert
             result.Should().Throw<ArgumentNullException>();
@@ -245,7 +245,7 @@ namespace EmployeeService.Core.Tests
             _repositoryMock.Setup(x => x.UpdateEmployee(employeeMock, id)).ReturnsAsync("Not found!");
 
             // Act
-            Func<string> result = () => _sut.UpdateEmployee(request, id).Result;
+            Func<Object> result = () => _sut.UpdateEmployee(request, id).Result;
 
             // Assert
             result.Should().Throw<ArgumentNullException>();

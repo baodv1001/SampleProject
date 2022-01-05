@@ -24,8 +24,8 @@ export function* createEmployee(action) {
 
 export function* updateEmployee(action) {
   try {
-    yield call(employeeApi.update, action.payload);
-    yield put(employeeActions.updateEmployee.updateEmployeeSuccess(action.payload));
+    const response = yield call(employeeApi.update, action.payload);
+    yield put(employeeActions.updateEmployee.updateEmployeeSuccess(response));
   } catch (error) {
     yield put(employeeActions.updateEmployee.updateEmployeeFailure(error));
   }
