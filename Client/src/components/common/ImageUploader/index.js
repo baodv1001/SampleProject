@@ -11,7 +11,7 @@ const ImageUploader = ({ onUploaded, url }) => {
   const [fileList, setFileList] = useState([]);
   const [progress, setProgress] = useState(0);
   const [progressVisible, setProgressVisible] = useState(false);
-
+  const role = localStorage.getItem('role');
   useEffect(() => {
     if (url) {
       setFileList([{ uid: '-1', url: url, thumbUrl: url, status: 'success' }]);
@@ -74,6 +74,7 @@ const ImageUploader = ({ onUploaded, url }) => {
   return (
     <div>
       <Upload
+        disabled={role!=='Admin'}
         accept="image/*"
         listType="picture-card"
         multiple={false}

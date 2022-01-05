@@ -60,7 +60,7 @@ const Register = props => {
             <Card>
               <div style={{ margin: '1.5rem 0' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <h3>Welcom Simple vote app!</h3>
+                  <h3>Welcom Sample app!</h3>
                 </div>
                 <Row justify="center">
                   <Col xs={24} sm={24} md={20} lg={20}>

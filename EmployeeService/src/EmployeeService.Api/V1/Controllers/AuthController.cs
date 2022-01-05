@@ -43,7 +43,6 @@ namespace EmployeeService.Api.V1.Controllers
             {
                 return Ok(new { message = "Invalid Password" });
             }    
-
             string jwt = JwtService.Generate(responeUser.IdUser);
             HttpContext.Response.Cookies.Append("jwt", jwt, new CookieOptions
             {

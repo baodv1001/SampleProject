@@ -21,7 +21,6 @@ const SmartTable = ({
     () => ({
       onScroll: ({ isEnd }) => {
         if (isEnd) {
-          console.log('loadDataByChunk');
           onFetch();
         }
       },

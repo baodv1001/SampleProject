@@ -20,7 +20,7 @@ const MainLayout = props => {
 
   return (
     <ProLayout
-      title="Simple vote app"
+      title="Sample app"
       fixSiderbar
       fixedHeader
       layout="mix"

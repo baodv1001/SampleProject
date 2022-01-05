@@ -3,6 +3,7 @@ const INIT_STATE = {
     data: [],
     isLoading: false,
     isSuccess: false,
+    message: ""
   },
   auth: {
     data: {},

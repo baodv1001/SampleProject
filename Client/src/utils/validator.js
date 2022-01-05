@@ -25,7 +25,7 @@ const dateValidator = (rule, value, callback) => {
   };
   const phoneNumberValidator = (rule, value, callback) => {
     try {
-      if (value && value[0] != 0) {
+      if (value && value[0] !== 0) {
         callback('Phone number is not valid');
       } else {
         callback();
