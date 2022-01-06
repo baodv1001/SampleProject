@@ -40,6 +40,7 @@ namespace EmployeeService.Api
                 contextLifetime: ServiceLifetime.Transient,
                 optionsLifetime: ServiceLifetime.Transient);
 
+            // Add application services.
             services.AddScoped<IEmployeeService, EmployeesService>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IUserService, UserService>();

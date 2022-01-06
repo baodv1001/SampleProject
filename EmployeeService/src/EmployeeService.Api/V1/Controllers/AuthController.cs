@@ -15,9 +15,9 @@ namespace EmployeeService.Api.V1.Controllers
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
-        // Get an Employee by Id
-        // Return an Employee
-        // Table used: Employees
+        // Check username vs password
+        // Return user with jwt
+        // Table used: User, Role
         [HttpPost("login", Name = "Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -30,20 +30,23 @@ namespace EmployeeService.Api.V1.Controllers
             {
                 return BadRequest();
             }
+            // Get user
             var responeUser = await _userService.GetUserByUsername(user.Username).ConfigureAwait(false);
-            if ( responeUser == null)
+            if (responeUser == null)
             {
                 return Ok(new { message = "Invalid username" });
             }
+            // Check password hashed by Bcrypt
             /*if (!BCrypt.Net.BCrypt.Verify(user.Password, responeUser.Password))
             {
                 return Ok(new { message = "Invalid Password" });
             }*/
-            if(! (responeUser.Password == user.Password))
+            if (responeUser.Password != user.Password)
             {
                 return Ok(new { message = "Invalid Password" });
-            }    
+            }
             string jwt = JwtService.Generate(responeUser.IdUser);
+            // Set jwt to Cookies
             HttpContext.Response.Cookies.Append("jwt", jwt, new CookieOptions
             {
                 HttpOnly = true,

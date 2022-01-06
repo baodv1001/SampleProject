@@ -36,6 +36,7 @@ namespace EmployeeService.Infrastructure.Repositories
             {
                 return new { message = "Not found!" };
             }
+            // Handle concurrency
             if (dbEmployee.UpdatedAt != employee.UpdatedAt)
             {
                 return new {message = "Employee has been updated, please refresh the page!" };

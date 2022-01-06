@@ -89,8 +89,8 @@ namespace EmployeeService.Api.V1.Controllers
             return await _employeeService.DeleteEmployee(id).ConfigureAwait(false);
         }
 
-        // Delete Employee
-        // Return true/false
+        // Update Employee
+        // Return Object include message vs updated employee
         // Table used: Employees
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

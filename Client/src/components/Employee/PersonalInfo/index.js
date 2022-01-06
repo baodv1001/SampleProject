@@ -47,7 +47,7 @@ const PersonalInfo = props => {
       }
     }
   };
-
+  // Fill form
   useEffect(() => {
     if (id && employees.length !== 0) {
       const employee = employees.find(employee => employee.id == id);
@@ -64,9 +64,11 @@ const PersonalInfo = props => {
       form.setFieldsValue(editedLecturer);
     }
   }, [employees]);
+  // Get all employees
   useEffect(() => {
     dispatch(employeeActions.getEmployees.getEmployeesRequest());
   }, [dispatch]);
+  // Handle noti when get respone
   useEffect(() => {
     if (!isLoading && isSubmit) {
       if (isSuccess) {
@@ -83,7 +85,7 @@ const PersonalInfo = props => {
         <Row gutter={20} align="center">
           <Col xs={24} md={24} xl={10} lg={10}>
             <Form.Item label="Full name" name="name" rules={[{ required: true }]}>
-              <Input disabled={role!=='Admin'} placeholder="Full name" />
+              <Input disabled={role !== 'Admin'} placeholder="Full name" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} xl={10} lg={10}>
@@ -96,17 +98,21 @@ const PersonalInfo = props => {
                   validator: dateValidator,
                 },
               ]}>
-              <DatePicker disabled={role!=='Admin'} format={dateFormat} style={{ width: '100%' }} />
+              <DatePicker
+                disabled={role !== 'Admin'}
+                format={dateFormat}
+                style={{ width: '100%' }}
+              />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} xl={20} lg={20}>
             <Form.Item label="Address" name="address" rules={[{ required: true }]}>
-              <Input disabled={role!=='Admin'} placeholder="Address" />
+              <Input disabled={role !== 'Admin'} placeholder="Address" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} xl={10} lg={10}>
-            <Form.Item  label="Gender" name="gender" rules={[{ required: true }]}>
-              <Select disabled={role!=='Admin'}>
+            <Form.Item label="Gender" name="gender" rules={[{ required: true }]}>
+              <Select disabled={role !== 'Admin'}>
                 <Option value="Male">Male</Option>
                 <Option value="Female">Female</Option>
                 <Option value="Others">Others</Option>
@@ -115,7 +121,7 @@ const PersonalInfo = props => {
           </Col>
           <Col xs={24} md={24} xl={10} lg={10}>
             <Form.Item label="Level" name="level" rules={[{ required: true }]}>
-              <Select disabled={role!=='Admin'}>
+              <Select disabled={role !== 'Admin'}>
                 <Option value="Intern">Intern</Option>
                 <Option value="Senior Dev">Senior Dev</Option>
                 <Option value="Tech lead">Tech lead</Option>
@@ -132,18 +138,29 @@ const PersonalInfo = props => {
                 }
               }}
               rules={[{ required: true }]}>
-              <Input disabled={role!=='Admin'} type="text" placeholder="Phone number" minLength={10} maxLength={10} />
+              <Input
+                disabled={role !== 'Admin'}
+                type="text"
+                placeholder="Phone number"
+                minLength={10}
+                maxLength={10}
+              />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={10} xl={10}>
             <Form.Item label="Email" name="email" rules={[{ required: true, type: 'email' }]}>
-              <Input disabled={role!=='Admin'} placeholder="Email" />
+              <Input disabled={role !== 'Admin'} placeholder="Email" />
             </Form.Item>
           </Col>
         </Row>
         <Row align="center">
           <Form.Item>
-            <Button disabled={role!=='Admin'} onClick={handleSubmit} loading={isLoading} type="primary" htmlType="submit">
+            <Button
+              disabled={role !== 'Admin'}
+              onClick={handleSubmit}
+              loading={isLoading}
+              type="primary"
+              htmlType="submit">
               Submit
             </Button>
           </Form.Item>

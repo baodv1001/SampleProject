@@ -22,6 +22,7 @@ namespace EmployeeService.Infrastructure.Repositories
         }
         public async Task<User> GetUserByUsername(string username)
         {
+            // Find user by username
             var user =  await _dbContext.Users.Include(i => i.Role).FirstOrDefaultAsync( i => i.Username == username);
             if (user != null)
             {
