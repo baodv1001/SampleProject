@@ -120,12 +120,13 @@ const Employee = props => {
       onCancel() {},
     });
   };
-
+  // get role and get all employees
   useEffect(() => {
     const role = localStorage.getItem('role');
     setRole(role);
     dispatch(getEmployees.getEmployeesRequest());
   }, []);
+  // Handle data from back end
   useEffect(() => {
     if (data.length > 0) {
       mappingDatasource(data);
@@ -137,6 +138,7 @@ const Employee = props => {
     );
     mappingDatasource(dataTmp);
   };
+  // Map data and format 
   const mappingDatasource = dataInput => {
     const res = [];
     var no = 0;

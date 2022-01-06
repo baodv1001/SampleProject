@@ -34,15 +34,17 @@ const Login = props => {
       setIsFailed('0');
     }, 5000);
   };
+  // Check respone when login
   useEffect(() => {
     if (auth) {
       if (auth.data) {
         if (auth.data.jwt) {
+          // Set token to localstorage
           localStorage.setItem('accessToken', auth.data.jwt);
           localStorage.setItem('idUser', auth.data.user.idUser);
           localStorage.setItem('role', auth.data.user.role.name);
           navigate('/', {replace:true});
-          // window.location.reload();
+          window.location.reload();
         } else {
           setLoading(false);
           handleFailed(auth.data.message);

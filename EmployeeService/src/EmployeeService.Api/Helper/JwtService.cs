@@ -6,6 +6,7 @@ namespace EmployeeService.Api.Helper
 {
     public class JwtService
     {
+        // Private key
         private static string secureKey = "abxd-efgh-ijkl-exyz";
         static public string Generate(int id)
         {
