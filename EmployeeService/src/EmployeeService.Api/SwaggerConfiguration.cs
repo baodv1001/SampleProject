@@ -17,11 +17,11 @@ namespace EmployeeService.Api
 
         public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app)
         {
-            if(app == null)
+            if (app == null)
             {
                 throw new ArgumentNullException(nameof(app));
-            }   
-            
+            }
+
             app.UseSwagger();
             app.UseSwaggerUI();
 

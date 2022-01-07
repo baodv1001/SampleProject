@@ -9,30 +9,30 @@ namespace EmployeeService.Api
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection ConfigureDependencyInjection (this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
-            if(services == null)
+            if (services == null)
             {
-                throw new ArgumentNullException (nameof (services));
-            }    
+                throw new ArgumentNullException(nameof(services));
+            }
 
             if (configuration == null)
             {
-                throw new ArgumentNullException (nameof (configuration));
+                throw new ArgumentNullException(nameof(configuration));
             }
 
 
             var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
 
             string dbConnectionString = string.Empty;
-            if(!(bool)(appSettings?.ByPassKeyVault))
+            if (!(bool)(appSettings?.ByPassKeyVault))
             {
                 // Use for localhost
                 dbConnectionString = configuration.GetConnectionString("Employee");
-            }   
+            }
             else
             {
-                
+
             }
             //
             services.AddDbContext<EmployeeDbContext>(
@@ -45,8 +45,35 @@ namespace EmployeeService.Api
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            // Example mutiple implements 
+            services.AddScoped<HeavyHorn>();
+            services.AddScoped<LightHorn>();
+            services.AddTransient<ServiceResolver>(serviceProvider => serviceTypeName =>
+            {
+                switch (serviceTypeName)
+                {
+                    case ServiceType.Heavy:
+                        return serviceProvider.GetService<HeavyHorn>();
+                    case ServiceType.Light:
+                        return serviceProvider.GetService<LightHorn>();
+                    default:
+                        return null;
+                }
+            });
+
+
+
             services.AddHttpClient();
             return services;
+        }
+        // Instance for IHorn
+        public delegate IHorn ServiceResolver(ServiceType serviceType);
+
+        public enum ServiceType
+        {
+            Heavy,
+            Light,
+
         }
     }
 }

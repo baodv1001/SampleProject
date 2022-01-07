@@ -24,7 +24,7 @@ namespace EmployeeService.Core.Services
         {
             try
             {
-                if(employee == null)
+                if (employee == null)
                 {
                     throw new ArgumentNullException(nameof(employee));
                 }
@@ -48,7 +48,7 @@ namespace EmployeeService.Core.Services
                 {
                     throw new ArgumentNullException(nameof(employee));
                 }
-                return await _employeeRepository.UpdateEmployee(employee,id);
+                return await _employeeRepository.UpdateEmployee(employee, id);
             }
             catch (System.Exception ex)
             {
@@ -92,10 +92,10 @@ namespace EmployeeService.Core.Services
         {
             try
             {
-                if(id<=0)
+                if (id <= 0)
                 {
                     throw new ArgumentNullException(nameof(id));
-                }    
+                }
                 return await _employeeRepository.GetEmployeeById(id);
 
             }

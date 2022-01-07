@@ -15,9 +15,11 @@ namespace EmployeeService.Api.V1.Controllers
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
-        // Check username vs password
-        // Return user with jwt
-        // Table used: User, Role
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>User</returns>
         [HttpPost("login", Name = "Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

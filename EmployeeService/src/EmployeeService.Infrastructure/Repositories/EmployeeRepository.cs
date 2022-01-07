@@ -39,7 +39,7 @@ namespace EmployeeService.Infrastructure.Repositories
             // Handle concurrency
             if (dbEmployee.UpdatedAt != employee.UpdatedAt)
             {
-                return new {message = "Employee has been updated, please refresh the page!" };
+                return new { message = "Employee has been updated, please refresh the page!" };
             }
             dbEmployee.Name = employee.Name;
             dbEmployee.Address = employee.Address;
@@ -55,7 +55,7 @@ namespace EmployeeService.Infrastructure.Repositories
             _dbContext.Employees.Update(dbEmployee);
             //Commit
             await _dbContext.SaveChangesAsync();
-            return new {message= "Update success!" , employee = dbEmployee};
+            return new { message = "Update success!", employee = dbEmployee };
         }
 
         public async Task<bool> DeleteEmployee(int id)

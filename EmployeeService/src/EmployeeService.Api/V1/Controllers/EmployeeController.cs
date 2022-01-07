@@ -15,9 +15,11 @@ namespace EmployeeService.Api.V1.Controllers
             _employeeService = employeeService ?? throw new ArgumentNullException(nameof(employeeService));
         }
 
-        // Get All Employees
-        // Return List Employees
-        // Table used: Employees
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>List Employees</returns>
+        /// <tableusing> Employees </tableusing> 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -30,10 +32,12 @@ namespace EmployeeService.Api.V1.Controllers
             return response == null ? NoContent() : Ok(response);
         }
 
-        // Get an Employee by Id
-        // Return an Employee
-        // Table used: Employees
-        [HttpGet("{id}", Name ="GetEmployeeById")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An employee</returns>
+        [HttpGet("{id}", Name = "GetEmployeeById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -41,17 +45,19 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Employee>> GetEmployeeById(int id)
         {
-            if(id <= 0)
+            if (id <= 0)
             {
                 return BadRequest();
-            }    
+            }
             var response = await _employeeService.GetEmployeeById(id).ConfigureAwait(false);
             return response == null ? NoContent() : Ok(response);
         }
 
-        // Create Employee
-        // Return an Employee created
-        // Table used: Employees
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns>An employee</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -60,19 +66,21 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
-            }    
+            }
 
             var response = await _employeeService.CreateEmployee(employee).ConfigureAwait(false);
 
             return CreatedAtRoute(nameof(GetEmployeeById), new { id = response.Id }, response);
         }
 
-        // Delete Employee
-        // Return true/false
-        // Table used: Employees
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Boolean</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -81,17 +89,20 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<bool>> DeleteEmployee(int id)
         {
-            if(id<=0)
+            if (id <= 0)
             {
                 return BadRequest();
-            }    
+            }
 
             return await _employeeService.DeleteEmployee(id).ConfigureAwait(false);
         }
 
-        // Update Employee
-        // Return Object include message vs updated employee
-        // Table used: Employees
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="id"></param>
+        /// <returns>Object include boolean and Employee updated</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -100,10 +111,10 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Object>> UpdateEmployee(Employee employee, int id)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
-            }    
+            }
             if (id <= 0)
             {
                 return BadRequest();
