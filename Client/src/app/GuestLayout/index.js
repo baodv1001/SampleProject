@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from './index.module.less';
+import PropTypes from 'prop-types';
 
 const GuestLayout = props => {
   const showRoutes = routes => {
@@ -19,5 +20,9 @@ const GuestLayout = props => {
     </div>
   );
 };
+
+GuestLayout.propTypes = {
+  routes: PropTypes.array,
+}
 
 export default GuestLayout;

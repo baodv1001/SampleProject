@@ -12,11 +12,6 @@ const ImageUploader = ({ onUploaded, url }) => {
   const [progress, setProgress] = useState(0);
   const [progressVisible, setProgressVisible] = useState(false);
   const role = localStorage.getItem('role');
-  useEffect(() => {
-    if (url) {
-      setFileList([{ uid: '-1', url: url, thumbUrl: url, status: 'success' }]);
-    }
-  }, [url]);
 
   const handleCancel = () => setPreviewVisible(false);
 
@@ -37,17 +32,22 @@ const ImageUploader = ({ onUploaded, url }) => {
   const checkFileSize = file => {
     if (file) {
       const isLt2M = file.size / 1024 / 1024 < 2;
+
       if (!isLt2M) {
         notification.error({ message: 'Image must be smaller than 2MB!' });
       }
+
       return isLt2M ? true : Upload.LIST_IGNORE;
     }
+
     return Upload.LIST_IGNORE;
   };
 
   const uploadFiles = options => {
     const { onSuccess, onError, file } = options;
+
     if (!file) return;
+
     const storageRef = ref(storage, `images/${uuidv4()}_${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -70,6 +70,12 @@ const ImageUploader = ({ onUploaded, url }) => {
       }
     );
   };
+
+  useEffect(() => {
+    if (url) {
+      setFileList([{ uid: '-1', url: url, thumbUrl: url, status: 'success' }]);
+    }
+  }, [url]);
 
   return (
     <div>

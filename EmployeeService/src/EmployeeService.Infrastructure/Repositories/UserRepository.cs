@@ -15,19 +15,23 @@ namespace EmployeeService.Infrastructure.Repositories
     {
         private readonly EmployeeDbContext _dbContext;
         private readonly IMapper _mapper;
+
         public UserRepository(EmployeeDbContext dbContext, IMapper mapper)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
+
         public async Task<User> GetUserByUsername(string username)
         {
             // Find user by username
             var user = await _dbContext.Users.Include(i => i.Role).FirstOrDefaultAsync(i => i.Username == username);
+
             if (user != null)
             {
                 return _mapper.Map<User>(user);
             }
+
             return null;
         }
     }

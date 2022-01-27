@@ -17,9 +17,10 @@ namespace EmployeeService.Core.Services
 
         public EmployeesService(IEmployeeRepository employeeRepository, ILogger<EmployeesService> logger)
         {
-            _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _employeeRepository = employeeRepository;
+            _logger = logger;
         }
+
         public async Task<Employee> CreateEmployee(Employee employee)
         {
             try
@@ -36,6 +37,7 @@ namespace EmployeeService.Core.Services
                 throw;
             }
         }
+
         public async Task<Object> UpdateEmployee(Employee employee, int id)
         {
             try
@@ -56,6 +58,7 @@ namespace EmployeeService.Core.Services
                 throw;
             }
         }
+
         public async Task<bool> DeleteEmployee(int id)
         {
             try
@@ -96,6 +99,7 @@ namespace EmployeeService.Core.Services
                 {
                     throw new ArgumentNullException(nameof(id));
                 }
+
                 return await _employeeRepository.GetEmployeeById(id);
 
             }

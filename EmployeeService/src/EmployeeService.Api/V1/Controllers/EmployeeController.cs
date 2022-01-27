@@ -12,7 +12,7 @@ namespace EmployeeService.Api.V1.Controllers
         private readonly IEmployeeService _employeeService;
         public EmployeeController(IEmployeeService employeeService)
         {
-            _employeeService = employeeService ?? throw new ArgumentNullException(nameof(employeeService));
+            _employeeService = employeeService;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace EmployeeService.Api.V1.Controllers
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
             var response = await _employeeService.GetAllEmployees().ConfigureAwait(false);
-            return response == null ? NoContent() : Ok(response);
+            return response == null ? NotFound() : Ok(response);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace EmployeeService.Api.V1.Controllers
                 return BadRequest();
             }
             var response = await _employeeService.GetEmployeeById(id).ConfigureAwait(false);
-            return response == null ? NoContent() : Ok(response);
+            return response == null ? NotFound() : Ok(response);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace EmployeeService.Api.V1.Controllers
             }
             var response = await _employeeService.UpdateEmployee(employee, id).ConfigureAwait(false);
 
-            return response == null ? NoContent() : Ok(response);
+            return response == null ? NotFound() : Ok(response);
         }
     }
 }

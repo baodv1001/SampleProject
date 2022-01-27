@@ -1,8 +1,9 @@
 import { Button, Result } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router';
-const NotAuthorized = props => {
+const NotAuthorized = () => {
   const navigate = useNavigate();
+
   return (
     <div>
       <Result

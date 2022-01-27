@@ -2,7 +2,7 @@ import { Button, Result } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-const NotFound = props => {
+const NotFound = () => {
   const navigate = useNavigate();
   return (
     <div>

@@ -11,6 +11,7 @@ const Content = props => {
     navigate('/login');
     window.location.reload();
   };
+  
   return (
     <div>
       <Button style={{ marginRight: '8px' }} onClick={logout}>

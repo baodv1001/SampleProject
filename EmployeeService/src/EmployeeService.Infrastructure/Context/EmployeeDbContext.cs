@@ -13,6 +13,7 @@ namespace EmployeeService.Infrastructure.Context
         public EmployeeDbContext(DbContextOptions<EmployeeDbContext> option) : base(option)
         {
         }
+
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Role { get; set; }

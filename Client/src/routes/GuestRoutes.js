@@ -18,4 +18,5 @@ const guestRoutes = [
     page: <NotAuthorized />,
   },
 ];
+
 export { guestRoutes };

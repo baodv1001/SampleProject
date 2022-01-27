@@ -13,7 +13,7 @@ namespace EmployeeService.Api.V1.Controllers
         private readonly IUserService _userService;
         public AuthController(IUserService userService)
         {
-            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _userService = userService;
         }
         /// <summary>
         /// 
@@ -32,31 +32,28 @@ namespace EmployeeService.Api.V1.Controllers
             {
                 return BadRequest();
             }
+
             // Get user
             var responeUser = await _userService.GetUserByUsername(user.Username).ConfigureAwait(false);
             if (responeUser == null)
             {
                 return Ok(new { message = "Invalid username" });
             }
+
             // Check password hashed by Bcrypt
             /*if (!BCrypt.Net.BCrypt.Verify(user.Password, responeUser.Password))
             {
                 return Ok(new { message = "Invalid Password" });
             }*/
+
             if (responeUser.Password != user.Password)
             {
                 return Ok(new { message = "Invalid Password" });
             }
+
             string jwt = JwtService.Generate(responeUser.IdUser);
+
             // Set jwt to Cookies
-            HttpContext.Response.Cookies.Append("jwt", jwt, new CookieOptions
-            {
-                HttpOnly = true,
-                SameSite = SameSiteMode.None,
-                Secure = true,
-                Expires = DateTime.Now.AddMinutes(60),
-                IsEssential = true
-            });
             return Ok(new
             {
                 user = responeUser,

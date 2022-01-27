@@ -3,11 +3,12 @@ import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { useParams } from 'react-router';
 import * as employeeActions from 'redux/actions/employees';
 import { employeeState$ } from 'redux/selectors';
 import { dateValidator, phoneNumberValidator } from 'utils/validator';
+import PropTypes from 'prop-types';
+
 const { Option } = Select;
 
 const PersonalInfo = props => {
@@ -20,15 +21,17 @@ const PersonalInfo = props => {
   const dateFormat = 'DD/MM/YYYY';
   const { typeSubmit } = props;
   const role = localStorage.getItem('role');
+
   const handleSubmit = () => {
     const data = form.getFieldValue();
     const { name, gender, dob, phonenumber, email, address, level } = data;
     data.imageUrl = props.imgUrl;
-
     const currentDate = moment();
+
     if (currentDate < dob) {
       notification.error({ message: 'Date of birth is not greater than current date' });
     } else {
+
       // create employee
       if (name && gender && dob && phonenumber && email && address && level) {
         if (typeSubmit === 'Create') {
@@ -38,6 +41,7 @@ const PersonalInfo = props => {
           setIsSubmit(true);
         }
       }
+
       // edit employee
       if (typeSubmit === 'Edit') {
         var editedEmployee = employees.find(employee => employee.id == id);
@@ -47,6 +51,7 @@ const PersonalInfo = props => {
       }
     }
   };
+
   // Fill form
   useEffect(() => {
     if (id && employees.length !== 0) {
@@ -60,15 +65,18 @@ const PersonalInfo = props => {
         email: employee.email,
         address: employee.address,
       };
+
       props.setImgUrl(employee?.imageUrl);
       form.setFieldsValue(editedLecturer);
     }
   }, [employees]);
+
   // Get all employees
   useEffect(() => {
     dispatch(employeeActions.getEmployees.getEmployeesRequest());
   }, [dispatch]);
   // Handle noti when get respone
+
   useEffect(() => {
     if (!isLoading && isSubmit) {
       if (isSuccess) {
@@ -79,6 +87,7 @@ const PersonalInfo = props => {
       }
     }
   }, [isSuccess, isLoading]);
+
   return (
     <Card>
       <Form form={form} layout="vertical">
@@ -169,5 +178,11 @@ const PersonalInfo = props => {
     </Card>
   );
 };
+
+PersonalInfo.propsType = {
+  typeSubmit: PropTypes.string,
+  imgUrl: PropTypes.string,
+  setImgUrl: PropTypes.func
+}
 
 export default PersonalInfo;

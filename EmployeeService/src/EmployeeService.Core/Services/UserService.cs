@@ -17,9 +17,10 @@ namespace EmployeeService.Core.Services
 
         public UserService(IUserRepository userRepository, ILogger<UserService> logger)
         {
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _userRepository = userRepository;
+            _logger = logger;
         }
+
         public async Task<User> GetUserByUsername(string username)
         {
             try

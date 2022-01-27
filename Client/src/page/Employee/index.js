@@ -20,12 +20,16 @@ import { employeeState$ } from '../../redux/selectors';
 
 const { Search } = Input;
 const { confirm } = Modal;
-const Employee = props => {
+
+const Employee = () => {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [dataSource, setDataSource] = useState([]);
   const { data, isLoading, isSuccess } = useSelector(employeeState$);
-  const columns = [
+  const [role, setRole] = useState();
+
+
+  const columns = React.memo([
     {
       title: 'No',
       dataIndex: 'no',
@@ -105,8 +109,7 @@ const Employee = props => {
         </div>
       ),
     },
-  ];
-  const [role, setRole] = useState();
+  ]);
 
   const handleDelete = idEmployee => {
     confirm({
@@ -120,24 +123,28 @@ const Employee = props => {
       onCancel() {},
     });
   };
-  // get role and get all employees
-  useEffect(() => {
-    const role = localStorage.getItem('role');
-    setRole(role);
-    dispatch(getEmployees.getEmployeesRequest());
-  }, []);
-  // Handle data from back end
-  useEffect(() => {
-    if (data.length > 0) {
-      mappingDatasource(data);
-    }
-  }, [data]);
+
   const handleSearch = value => {
     const dataTmp = data.filter(
       employee => employee.name.toLowerCase().search(value.toLowerCase()) >= 0
     );
     mappingDatasource(dataTmp);
   };
+
+  // get role and get all employees
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    setRole(role);
+    dispatch(getEmployees.getEmployeesRequest());
+  }, []);
+
+  // Handle data from back end
+  useEffect(() => {
+    if (data.length > 0) {
+      mappingDatasource(data);
+    }
+  }, [data]);
+  
   // Map data and format 
   const mappingDatasource = dataInput => {
     const res = [];
@@ -156,6 +163,7 @@ const Employee = props => {
     });
     setDataSource(res);
   };
+
   return (
     <div>
       <Breadcrumb style={{ marginBottom: '20px' }}>

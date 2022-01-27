@@ -29,6 +29,7 @@ const routes = [
     page: <NotFound />,
   },
 ];
+
 const menuItems = {
   path: '/',
   routes: [
@@ -46,4 +47,5 @@ const menuItems = {
     },
   ],
 };
+
 export { routes, menuItems };

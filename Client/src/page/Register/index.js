@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import authApi from 'api/authApi';
-const Register = props => {
+
+const Register = () => {
   const [loading, setLoading] = useState(false);
   const [isFailed, setIsFailed] = useState('0');
   const [failedMessage, setFailedMessage] = useState('');
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const register = values => {
     setLoading(true);
     if (values.password !== values.confirmPassword) {
@@ -41,9 +43,11 @@ const Register = props => {
       });
     setLoading(false);
   };
-  let noticeFailed = () => {
+
+  const noticeFailed = () => {
     handleFailed('Please fill in all input fields!');
   };
+
   const handleFailed = message => {
     setFailedMessage(message);
 
@@ -52,6 +56,7 @@ const Register = props => {
       setIsFailed('0');
     }, 5000);
   };
+
   return (
     <div className={styles.content}>
       <div className={styles.container}>

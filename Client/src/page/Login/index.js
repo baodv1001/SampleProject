@@ -7,7 +7,7 @@ import { getAuth } from '../../redux/actions/auth';
 import { authState$ } from '../../redux/selectors';
 import styles from './index.module.less';
 
-const Login = props => {
+const Login = () => {
   const [loading, setLoading] = useState(false);
   const [isFailed, setIsFailed] = useState('0');
   const [failedMessage, setFailedMessage] = useState('');
@@ -15,6 +15,7 @@ const Login = props => {
   const dispatch = useDispatch();
   const auth = useSelector(authState$);
   const navigate = useNavigate();
+
   const login = values => {
     setLoading(true);
     let data = {
@@ -23,9 +24,11 @@ const Login = props => {
     };
     dispatch(getAuth.getAuthRequest(data));
   };
+
   let noticeFailed = () => {
     handleFailed('Please fill in all input fields!');
   };
+
   const handleFailed = message => {
     setFailedMessage(message);
 
@@ -34,24 +37,23 @@ const Login = props => {
       setIsFailed('0');
     }, 5000);
   };
+
   // Check respone when login
   useEffect(() => {
-    if (auth) {
-      if (auth.data) {
-        if (auth.data.jwt) {
+    if (auth?.data?.jwt) {
           // Set token to localstorage
           localStorage.setItem('accessToken', auth.data.jwt);
           localStorage.setItem('idUser', auth.data.user.idUser);
           localStorage.setItem('role', auth.data.user.role.name);
+
           navigate('/', {replace:true});
           window.location.reload();
         } else {
           setLoading(false);
           handleFailed(auth.data.message);
         }
-      }
-    }
-  }, [auth, navigate]);
+    }, [auth, navigate]);
+
   return (
     <div className={styles.content}>
       <div className={styles.container}>
@@ -60,7 +62,7 @@ const Login = props => {
             <Card>
               <div style={{ margin: '1.5rem 0' }}>
                 <div style={{ textAlign: 'center' }}>
-                  <h3>Welcom Sample app!</h3>
+                  <h3>Welcome to Sample app!</h3>
                 </div>
                 <Row justify="center">
                   <Col xs={24} sm={24} md={20} lg={20}>

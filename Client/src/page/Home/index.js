@@ -1,8 +1,7 @@
-import { Card, Input } from 'antd';
+import { Card } from 'antd';
 import React from 'react';
 
-const { Search } = Input;
-const Home = props => {
+const Home = () => {
 
   return (
     <Card>
