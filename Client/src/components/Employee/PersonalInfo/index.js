@@ -1,13 +1,12 @@
 import { Button, Card, Col, DatePicker, Form, Input, notification, Row, Select } from 'antd';
+import employeeApi from 'api/employeeApi';
 import moment from 'moment';
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
-import * as employeeActions from 'redux/actions/employees';
-import { employeeState$ } from 'redux/selectors';
-import { dateValidator, phoneNumberValidator } from 'utils/validator';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { dateValidator } from 'utils/validator';
 
 const { Option } = Select;
 
@@ -15,12 +14,15 @@ const PersonalInfo = props => {
   let navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
-  const { data: employees, isLoading, isSuccess, message } = useSelector(employeeState$);
   const [form] = Form.useForm();
   const { id } = useParams();
   const dateFormat = 'DD/MM/YYYY';
   const { typeSubmit } = props;
   const role = localStorage.getItem('role');
+  const [employee, setEmployee] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState();
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const handleSubmit = () => {
     const data = form.getFieldValue();
@@ -37,16 +39,30 @@ const PersonalInfo = props => {
         if (typeSubmit === 'Create') {
           data.updatedAt = moment();
           data.createdAt = moment();
-          dispatch(employeeActions.createEmployee.createEmployeeRequest(data));
+          employeeApi.create(data).then(res => {
+            setIsLoading(false); 
+            setMessage("Create employee successfully!")
+            if(res!=null)
+            {
+              setIsSuccess(true);
+            }
+          });
           setIsSubmit(true);
         }
       }
 
       // edit employee
       if (typeSubmit === 'Edit') {
-        var editedEmployee = employees.find(employee => employee.id == id);
+        var editedEmployee = employee
         editedEmployee = { ...editedEmployee, ...data };
-        dispatch(employeeActions.updateEmployee.updateEmployeeRequest(editedEmployee));
+        employeeApi.update(editedEmployee).then(res => {
+          setIsLoading(false); 
+          setMessage(res.message)
+          if(res.employee!=null)
+          {
+            setIsSuccess(true);
+          }
+        });
         setIsSubmit(true);
       }
     }
@@ -54,8 +70,6 @@ const PersonalInfo = props => {
 
   // Fill form
   useEffect(() => {
-    if (id && employees.length !== 0) {
-      const employee = employees.find(employee => employee.id == id);
       const editedLecturer = {
         name: employee.name,
         gender: employee.gender,
@@ -68,15 +82,15 @@ const PersonalInfo = props => {
 
       props.setImgUrl(employee?.imageUrl);
       form.setFieldsValue(editedLecturer);
-    }
-  }, [employees]);
+  }, [employee]);
 
-  // Get all employees
+  // Get employee by id
   useEffect(() => {
-    dispatch(employeeActions.getEmployees.getEmployeesRequest());
-  }, [dispatch]);
-  // Handle noti when get respone
+    // dispatch(employeeActions.getEmployees.getEmployeesRequest());
+    employeeApi.getById(id).then(res => setEmployee(res))
+  }, []);
 
+  // Handle noti when get respone
   useEffect(() => {
     if (!isLoading && isSubmit) {
       if (isSuccess) {
@@ -86,7 +100,7 @@ const PersonalInfo = props => {
         notification.error({ message: message });
       }
     }
-  }, [isSuccess, isLoading]);
+  }, [isLoading]);
 
   return (
     <Card>

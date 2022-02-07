@@ -11,6 +11,7 @@ import {
   Tooltip,
   Breadcrumb,
 } from 'antd';
+import employeeApi from 'api/employeeApi';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,9 +28,9 @@ const Employee = () => {
   const [dataSource, setDataSource] = useState([]);
   const { data, isLoading, isSuccess } = useSelector(employeeState$);
   const [role, setRole] = useState();
+  let page=1, pageSize=10;
 
-
-  const columns = React.memo([
+  const columns = [
     {
       title: 'No',
       dataIndex: 'no',
@@ -109,7 +110,7 @@ const Employee = () => {
         </div>
       ),
     },
-  ]);
+  ];
 
   const handleDelete = idEmployee => {
     confirm({
@@ -117,7 +118,8 @@ const Employee = () => {
       icon: <ExclamationCircleOutlined />,
       content: '',
       onOk() {
-        dispatch(deleteEmployee.deleteEmployeeRequest(idEmployee));
+        //dispatch(deleteEmployee.deleteEmployeeRequest(idEmployee));
+        employeeApi.delete(idEmployee)
         notification.success({ message: 'Delete Employee successful!' });
       },
       onCancel() {},
@@ -135,7 +137,7 @@ const Employee = () => {
   useEffect(() => {
     const role = localStorage.getItem('role');
     setRole(role);
-    dispatch(getEmployees.getEmployeesRequest());
+    employeeApi.getAll(page,pageSize).then(res=>mappingDatasource(res))
   }, []);
 
   // Handle data from back end
@@ -149,6 +151,7 @@ const Employee = () => {
   const mappingDatasource = dataInput => {
     const res = [];
     var no = 0;
+
     dataInput.map(employee => {
       res.push({
         no: ++no,
@@ -161,8 +164,13 @@ const Employee = () => {
         // role: Role.name,
       });
     });
+
     setDataSource(res);
   };
+
+  const onChange = (page, pageSize) => {
+    employeeApi.getAll(page,pageSize).then(res=>mappingDatasource(res))
+  }
 
   return (
     <div>
@@ -201,6 +209,7 @@ const Employee = () => {
                 defaultPageSize: 10,
                 showSizeChanger: true,
                 pageSizeOptions: ['10', '15', '20'],
+                onChange: {onChange}
               }}
             />
           </Col>

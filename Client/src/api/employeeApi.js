@@ -3,8 +3,8 @@ import axiosClient from './axiosClient';
 const url = '/employee/';
 
 const employeeApi = {
-  getAll: async () => {
-    const res = await axiosClient.get(url);
+  getAll: async (pageNumber, pageSize) => {
+    const res = await axiosClient.get(`${url}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
     return res.data;
   },
 

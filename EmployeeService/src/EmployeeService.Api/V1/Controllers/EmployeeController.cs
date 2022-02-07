@@ -1,7 +1,9 @@
-﻿using EmployeeService.Core.Interfaces.Services;
+﻿using EmployeeService.Core.Helpers;
+using EmployeeService.Core.Interfaces.Services;
 using EmployeeService.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace EmployeeService.Api.V1.Controllers
 {
@@ -26,10 +28,22 @@ namespace EmployeeService.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
+        public async Task<ActionResult<PagedList<Employee>>> GetEmployees([FromQuery] EmployeeParameters employeeParameters)
         {
-            var response = await _employeeService.GetAllEmployees().ConfigureAwait(false);
-            return response == null ? NotFound() : Ok(response);
+            var employees = await _employeeService.GetAllEmployees(employeeParameters).ConfigureAwait(false);
+
+            var metadata = new
+            {
+                employees.TotalCount,
+                employees.PageSize,
+                employees.CurrentPage,
+                employees.HasNext,
+                employees.HasPrevious
+            };
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+            return employees == null ? NotFound() : Ok(employees);
         }
 
         /// <summary>

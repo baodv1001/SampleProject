@@ -1,4 +1,5 @@
-﻿using EmployeeService.Core.Models;
+﻿using EmployeeService.Core.Helpers;
+using EmployeeService.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EmployeeService.Core.Interfaces.Repositories
 {
     public interface IEmployeeRepository
     {
-        Task<IEnumerable<Employee>> GetAllEmployees();
+        Task<PagedList<Employee>> GetAllEmployees(EmployeeParameters employeeParameters);
         Task<Employee> GetEmployeeById(int id);
         Task<Employee> CreateEmployee(Employee employee);
         Task<Object> UpdateEmployee(Employee employee, int id);

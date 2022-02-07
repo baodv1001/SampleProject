@@ -1,4 +1,5 @@
-﻿using EmployeeService.Core.Interfaces.Repositories;
+﻿using EmployeeService.Core.Helpers;
+using EmployeeService.Core.Interfaces.Repositories;
 using EmployeeService.Core.Interfaces.Services;
 using EmployeeService.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -76,12 +77,12 @@ namespace EmployeeService.Core.Services
             }
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<PagedList<Employee>> GetAllEmployees(EmployeeParameters employeeParameters)
         {
             try
             {
                 /*throw new ArgumentNullException();*/
-                return await _employeeRepository.GetAllEmployees();
+                return await _employeeRepository.GetAllEmployees(employeeParameters);
 
             }
             catch (System.Exception ex)

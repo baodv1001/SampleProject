@@ -1,6 +1,6 @@
 import { HomeOutlined, UserOutlined} from '@ant-design/icons';
 import Employee from 'page/Employee';
-import EditEmployee from 'page/Employee/EditEmployee';
+import EditEmployee from 'page/Employee/EmployeeDetail';
 import Home from '../page/Home';
 import NotFound from '../page/NotFound';
 const routes = [

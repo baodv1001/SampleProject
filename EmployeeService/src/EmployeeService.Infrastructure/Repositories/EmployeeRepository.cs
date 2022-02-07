@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EmployeeService.Core.Helpers;
 
 namespace EmployeeService.Infrastructure.Repositories
 {
@@ -78,13 +79,14 @@ namespace EmployeeService.Infrastructure.Repositories
             return true;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<PagedList<Employee>> GetAllEmployees(EmployeeParameters employeeParameters)
         {
             var employees = await _dbContext.Employees.ToListAsync().ConfigureAwait(false);
+            var result = _mapper.Map<List<Employee>>(employees);
 
             if (employees != null)
             {
-                return _mapper.Map<IEnumerable<Employee>>(employees);
+                return PagedList<Employee>.ToPagedList(result, employeeParameters.PageNumber, employeeParameters.PageSize);
             }
 
             return null;
